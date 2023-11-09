@@ -1,3 +1,4 @@
+import 'package:base/registerPage.dart';
 import 'package:base/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -211,8 +212,8 @@ class _LoginPageState extends State<LoginPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigate to the Register page when "Register" is clicked
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()));
                 },
                 child: Text(
                   'Do not have an account? Register',

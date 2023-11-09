@@ -1,4 +1,5 @@
 import 'package:base/loginPage.dart';
+import 'package:base/registerPage.dart';
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatefulWidget {
@@ -84,6 +85,11 @@ class _FirstPageState extends State<FirstPage> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   // Add your button's onPressed action here
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              RegisterPage()));
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: Color(0xFF0245A3),
