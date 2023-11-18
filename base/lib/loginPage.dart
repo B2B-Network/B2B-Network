@@ -1,3 +1,4 @@
+import 'package:base/homePage.dart';
 import 'package:base/registerPage.dart';
 import 'package:base/routes.dart';
 import 'package:flutter/material.dart';
@@ -197,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()));
+                          MaterialPageRoute(builder: (context) => HomePage()));
                     },
                     child: Text(
                       "Login",
