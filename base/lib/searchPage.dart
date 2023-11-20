@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'gridViewdb.dart';
 import 'homePage.dart';
 import 'listPage.dart';
 import 'notification.dart';
@@ -157,6 +158,31 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              child: Row(
+                children: [
+                  Text(
+                    'Invitation',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Mplus1p',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              child: const Padding(
+                padding: EdgeInsets.all(24.0),
+                child: GridB(),
+              ),
+            )
           ],
         ),
       ),
