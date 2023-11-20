@@ -158,20 +158,20 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              child: Row(
-                children: [
-                  Text(
-                    'Invitation',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Mplus1p',
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Container(
+                child: Row(
+                  children: [
+                    Text(
+                      'Invitation',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Mplus1p',
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             SizedBox(
