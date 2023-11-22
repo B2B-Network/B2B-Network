@@ -1,3 +1,4 @@
+import "package:base/homePage.dart";
 import "package:base/routes.dart";
 import "package:flutter/material.dart";
 
@@ -299,10 +300,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegisterPage()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
                     },
                     child: Text(
                       "Register",

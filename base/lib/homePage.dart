@@ -1,7 +1,8 @@
-import 'package:base/listPage.dart';
-import 'package:base/notification.dart';
-import 'package:base/searchPage.dart';
 import 'package:flutter/material.dart';
+
+import 'listPage.dart';
+import 'notification.dart';
+import 'searchPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
@@ -11,6 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // Use a Map to store the liked state for each post
+  Map<int, bool> likedPosts = {};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,21 +26,41 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.message),
             onPressed: () {
-              // Add navigation logic for the message icon here
+              // Placeholder: Add logic for the message icon here
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MessagePage(),
+                ),
+              );
             },
           ),
         ],
         leading: IconButton(
           icon: Icon(Icons.account_circle),
           onPressed: () {
-            // Add navigation logic for the profile icon here
+            // Placeholder: Add logic for the profile icon here
           },
         ),
       ),
       body: Container(
         color: Color(0xFFF6F1F1),
-        child: Center(
-          child: Text("Home Page Content"),
+        child: ListView(
+          children: [
+            _buildPost(
+              postId: 0,
+              username: 'john_doe',
+              imageUrl: 'assets/images/post1.jpeg',
+              caption: 'Beautiful Handicraft bags',
+            ),
+            _buildPost(
+              postId: 1,
+              username: 'jane_doe',
+              imageUrl: 'assets/images/post1.jpeg',
+              caption: 'Beautiful Handicraft bags',
+            ),
+            // Add more posts as needed
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -60,40 +84,142 @@ class _HomePageState extends State<HomePage> {
         ],
         selectedItemColor: Color(0xFF0245A3),
         unselectedItemColor: Colors.grey,
-        currentIndex: 0, // Set the initial selected tab index
+        currentIndex: 0,
         onTap: (int index) {
           // Add navigation logic for the bottom navigation items here
-          // You can use a switch statement or if conditions based on the index
           switch (index) {
-            case 1: // Index for the Search icon
+            case 1:
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      SearchPage(), // Replace with your search page
+                  builder: (context) => SearchPage(),
                 ),
               );
               break;
-            case 2: // Index for the Plus icon
+            case 2:
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      ListPage(), // Replace with your "Plus" page
+                  builder: (context) => ListPage(),
                 ),
               );
               break;
-            case 3: // Index for the Notification icon
+            case 3:
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      NotificationPage(), // Replace with your notification page
+                  builder: (context) => NotificationPage(),
                 ),
               );
               break;
           }
         },
+      ),
+    );
+  }
+
+  Widget _buildPost({
+    required int postId,
+    required String username,
+    required String imageUrl,
+    required String caption,
+  }) {
+    // Check if the post is liked
+    bool isLiked = likedPosts[postId] ?? false;
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // User info (profile image and username)
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 20,
+                // Use a local image for the user profile
+                backgroundImage: AssetImage('assets/images/dp.jpg'),
+              ),
+              SizedBox(width: 8),
+              Text(
+                username,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Mplus1p',
+                ),
+              ),
+            ],
+          ),
+          // Caption
+          SizedBox(height: 8),
+          Text(
+            caption,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Mplus1p',
+            ),
+          ),
+          // Post image
+          SizedBox(height: 8),
+          Image.asset(
+            imageUrl,
+            height: 200,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+          // Like and Message icons
+          SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      isLiked ? Icons.favorite : Icons.favorite_border,
+                      color: isLiked ? Colors.red : null,
+                    ),
+                    onPressed: () {
+                      // Toggle the liked state
+                      setState(() {
+                        likedPosts[postId] = !isLiked;
+                      });
+                    },
+                  ),
+                  SizedBox(width: 8),
+                  Text('Like'),
+                ],
+              ),
+              IconButton(
+                icon: Icon(Icons.message),
+                onPressed: () {
+                  // Placeholder: Add logic for navigating to the message page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MessagePage(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Dummy class for the MessagePage, replace with your actual implementation
+class MessagePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Messages'),
+      ),
+      body: Center(
+        child: Text('Message Page Content'),
       ),
     );
   }
