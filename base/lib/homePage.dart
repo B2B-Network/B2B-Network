@@ -1,3 +1,4 @@
+import 'package:base/profile.dart';
 import 'package:flutter/material.dart';
 
 import 'listPage.dart';
@@ -40,6 +41,12 @@ class _HomePageState extends State<HomePage> {
           icon: Icon(Icons.account_circle),
           onPressed: () {
             // Placeholder: Add logic for the profile icon here
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(),
+                ),
+              );
           },
         ),
       ),
