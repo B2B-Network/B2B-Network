@@ -24,14 +24,54 @@ class _UpdatePageState extends State<UpdatePage> {
       TextEditingController(text: '+1 123-456-7890');
   TextEditingController dobController =
       TextEditingController(text: '1990-01-01');
-  TextEditingController categoryController =
-      TextEditingController(text: 'Developer');
+  TextEditingController categoryController = TextEditingController();
   TextEditingController bioController =
       TextEditingController(text: 'Passionate about coding');
   TextEditingController servicesController =
       TextEditingController(text: 'Software Development');
   TextEditingController businessNameController =
       TextEditingController(text: 'JohnDoe Tech');
+
+  List<String> categories = [
+    'Retail',
+    'Hospitality',
+    'Technology',
+    'Healthcare',
+    'Finance',
+    'Real Estate',
+    'Manufacturing',
+    'Agriculture',
+    'Transportation',
+    'Education',
+    'Entertainment',
+    'Consulting',
+    'Marketing',
+    'Food and Beverage',
+    'Construction',
+    'Energy',
+    'Automotive',
+    'Fashion',
+    'Environmental Services',
+    'Legal Services',
+    'Others',
+  ];
+  String selectedCategory = 'Retail';
+  DateTime? selectedDate;
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        dobController.text = "${picked.year}-${picked.month}-${picked.day}";
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -271,9 +311,28 @@ class _UpdatePageState extends State<UpdatePage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15),
                   child: Container(
-                    child: TextFormField(
-                      controller: dobController,
-                      decoration: InputDecoration(),
+                    child: InkWell(
+                      onTap: () => _selectDate(context),
+                      child: InputDecorator(
+                        decoration: InputDecoration(
+                          hintText: 'Select Date',
+                          errorText: dobController.text.isEmpty
+                              ? 'Please select a date'
+                              : null,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              selectedDate != null
+                                  ? "${selectedDate!.day}-${selectedDate!.month}-${selectedDate!.year}"
+                                  : 'Select Date',
+                            ),
+                            Icon(Icons.calendar_today),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -297,9 +356,19 @@ class _UpdatePageState extends State<UpdatePage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15),
                   child: Container(
-                    child: TextFormField(
-                      controller: categoryController,
-                      decoration: InputDecoration(),
+                    child: DropdownButtonFormField(
+                      value: selectedCategory,
+                      items: categories.map((String category) {
+                        return DropdownMenuItem(
+                          value: category,
+                          child: Text(category),
+                        );
+                      }).toList(),
+                      onChanged: (String? value) {
+                        setState(() {
+                          selectedCategory = value ?? 'Retail';
+                        });
+                      },
                     ),
                   ),
                 ),
@@ -402,7 +471,6 @@ class _UpdatePageState extends State<UpdatePage> {
                         print("User Name: ${userNameController.text}");
                         print("First Name: ${firstNameController.text}");
                         print("Last Name: ${lastNameController.text}");
-                        
 
                         Navigator.push(
                           context,
