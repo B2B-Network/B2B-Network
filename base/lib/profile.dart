@@ -224,11 +224,43 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => UpdatePage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => UpdatePage()));
                           },
                           child: Text(
                             "Update",
+                            style: TextStyle(
+                              fontFamily: 'Mplus1p',
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: SizedBox(
+                        width: 150,
+                        height: 45,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF0245A3),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => UpdatePage()));
+                          },
+                          child: Text(
+                            "Log Out",
                             style: TextStyle(
                               fontFamily: 'Mplus1p',
                               fontSize: 18,
