@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'followerPage.dart';
+import 'followingPage.dart';
 import 'homePage.dart';
 import 'listPage.dart';
 import 'notification.dart';
 import 'searchPage.dart';
+import 'update.dart';
 
 // Replace with your actual data fetching function
 Future<Map<String, int>> fetchFollowCounts() async {
@@ -62,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Text(
                         'User Name', // Replace with the actual user name
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -73,19 +76,43 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            'Following: $followingCount',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey,
+                          InkWell(
+                            onTap: () {
+                              // Navigate to the Following page
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FollowingPage(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'Following: $followingCount',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.blueGrey,
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
                           ),
                           SizedBox(width: 16),
-                          Text(
-                            'Followers: $followersCount',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.grey,
+                          InkWell(
+                            onTap: () {
+                              // Navigate to the Followers page
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FollowerPage(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'Followers: $followersCount',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.blueGrey,
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
                           ),
                         ],
@@ -128,7 +155,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
                         child: Text(
-                          'Sate: ',
+                          'State: ',
                           style: TextStyle(
                             fontSize: 18,
                             fontFamily: 'Mplus1p',
@@ -178,6 +205,34 @@ class _ProfilePageState extends State<ProfilePage> {
                           style: TextStyle(
                             fontSize: 18,
                             fontFamily: 'Mplus1p',
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: SizedBox(
+                        width: 150,
+                        height: 45,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF0245A3),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => UpdatePage()));
+                          },
+                          child: Text(
+                            "Update",
+                            style: TextStyle(
+                              fontFamily: 'Mplus1p',
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ),

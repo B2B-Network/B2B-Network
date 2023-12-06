@@ -1,0 +1,433 @@
+import 'package:flutter/material.dart';
+
+class UpdatePage extends StatefulWidget {
+  const UpdatePage({super.key});
+
+  @override
+  State<UpdatePage> createState() => _UpdatePageState();
+}
+
+class _UpdatePageState extends State<UpdatePage> {
+  TextEditingController userNameController =
+      TextEditingController(text: 'JohnDoe');
+  TextEditingController firstNameController =
+      TextEditingController(text: 'John');
+  TextEditingController lastNameController = TextEditingController(text: 'Doe');
+  TextEditingController emailController =
+      TextEditingController(text: 'john.doe@example.com');
+  TextEditingController countryController = TextEditingController(text: 'USA');
+  TextEditingController stateController =
+      TextEditingController(text: 'California');
+  TextEditingController cityController =
+      TextEditingController(text: 'San Francisco');
+  TextEditingController mobileNumberController =
+      TextEditingController(text: '+1 123-456-7890');
+  TextEditingController dobController =
+      TextEditingController(text: '1990-01-01');
+  TextEditingController categoryController =
+      TextEditingController(text: 'Developer');
+  TextEditingController bioController =
+      TextEditingController(text: 'Passionate about coding');
+  TextEditingController servicesController =
+      TextEditingController(text: 'Software Development');
+  TextEditingController businessNameController =
+      TextEditingController(text: 'JohnDoe Tech');
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xFF0245A3),
+          title: Text("Edit Profile"),
+        ),
+        body: Align(
+          alignment: Alignment.topLeft,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // User Name
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'User Name',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: userNameController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // First Name
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'First Name',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: firstNameController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Last Name
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'Last Name',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: lastNameController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Email
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'Email',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: emailController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Country
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'Country',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: countryController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // State
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'State',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: stateController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // City
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'City',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: cityController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Mobile Number
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'Mobile Number',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: mobileNumberController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Date of Birth
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'Date of Birth',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: dobController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Category
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'Category',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: categoryController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Bio
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'Bio',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: bioController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Services
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'Services',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: servicesController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                // Business Name
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  child: Container(
+                    child: Text(
+                      'Business Name',
+                      style: TextStyle(
+                        fontFamily: 'Mplus1p',
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Container(
+                    child: TextFormField(
+                      controller: businessNameController,
+                      decoration: InputDecoration(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+
+                // Done Button
+                Center(
+                  child: SizedBox(
+                    width: 150,
+                    height: 45,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF0245A3),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: () {
+                        // Access the values with controllers.text
+                        print("User Name: ${userNameController.text}");
+                        print("First Name: ${firstNameController.text}");
+                        print("Last Name: ${lastNameController.text}");
+                        // Repeat for other fields...
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => UpdatePage()),
+                        );
+                      },
+                      child: Text(
+                        "Done",
+                        style: TextStyle(
+                          fontFamily: 'Mplus1p',
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(UpdatePage());
+}
