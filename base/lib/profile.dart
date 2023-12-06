@@ -253,12 +253,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UpdatePage()));
-                          },
+                          onPressed: () {},
                           child: Text(
                             "Log Out",
                             style: TextStyle(
