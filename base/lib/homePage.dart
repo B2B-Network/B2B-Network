@@ -5,6 +5,21 @@ import 'listPage.dart';
 import 'notification.dart';
 import 'searchPage.dart';
 
+// Model class representing the post data
+class Post {
+  final int postId;
+  final String username;
+  final String imageUrl;
+  final String caption;
+
+  Post({
+    required this.postId,
+    required this.username,
+    required this.imageUrl,
+    required this.caption,
+  });
+}
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key});
 
@@ -13,8 +28,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // Use a List to store post data
+  List<Post> posts = [];
+
   // Use a Map to store the liked state for each post
   Map<int, bool> likedPosts = {};
+
+  // Method to fetch posts from the database (replace with your actual implementation)
+  Future<List<Post>> fetchPosts() async {
+    // Replace this with your logic to fetch posts from the database
+    // For now, a dummy list is returned
+    await Future.delayed(Duration(seconds: 2));
+    return [
+      Post(
+          postId: 0,
+          username: 'john_doe',
+          imageUrl: 'assets/images/post1.jpeg',
+          caption: 'Beautiful Handicraft bags'),
+      Post(
+          postId: 1,
+          username: 'jane_doe',
+          imageUrl: 'assets/images/post1.jpeg',
+          caption: 'Beautiful Handicraft bags'),
+      // Add more posts as needed
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +65,6 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.message),
             onPressed: () {
-              // Placeholder: Add logic for the message icon here
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -40,35 +77,46 @@ class _HomePageState extends State<HomePage> {
         leading: IconButton(
           icon: Icon(Icons.account_circle),
           onPressed: () {
-            // Placeholder: Add logic for the profile icon here
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfilePage(),
-                ),
-              );
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProfilePage(),
+              ),
+            );
           },
         ),
       ),
-      body: Container(
-        color: Color(0xFFF6F1F1),
-        child: ListView(
-          children: [
-            _buildPost(
-              postId: 0,
-              username: 'john_doe',
-              imageUrl: 'assets/images/post1.jpeg',
-              caption: 'Beautiful Handicraft bags',
-            ),
-            _buildPost(
-              postId: 1,
-              username: 'jane_doe',
-              imageUrl: 'assets/images/post1.jpeg',
-              caption: 'Beautiful Handicraft bags',
-            ),
-            // Add more posts as needed
-          ],
-        ),
+      body: FutureBuilder<List<Post>>(
+        future: fetchPosts(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Display a loading indicator while data is being fetched
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            // Handle error case
+            return Center(child: Text('Error loading posts'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            // Handle case where there are no posts
+            return Center(child: Text('No posts available'));
+          } else {
+            // Populate the posts list with data from the database
+            posts = snapshot.data!;
+            return Container(
+              color: Color(0xFFF6F1F1),
+              child: ListView.builder(
+                itemCount: posts.length,
+                itemBuilder: (context, index) {
+                  return _buildPost(
+                    postId: posts[index].postId,
+                    username: posts[index].username,
+                    imageUrl: posts[index].imageUrl,
+                    caption: posts[index].caption,
+                  );
+                },
+              ),
+            );
+          }
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -93,7 +141,6 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: Colors.grey,
         currentIndex: 0,
         onTap: (int index) {
-          // Add navigation logic for the bottom navigation items here
           switch (index) {
             case 1:
               Navigator.push(
@@ -200,7 +247,6 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                 icon: Icon(Icons.message),
                 onPressed: () {
-                  // Placeholder: Add logic for navigating to the message page
                   Navigator.push(
                     context,
                     MaterialPageRoute(
