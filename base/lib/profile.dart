@@ -16,6 +16,82 @@ Future<Map<String, int>> fetchFollowCounts() async {
   return {'followers': 200, 'following': 100};
 }
 
+class Post {
+  final int postId;
+  final String imageUrl;
+  final String caption;
+
+  Post({required this.postId, required this.imageUrl, required this.caption});
+}
+
+// Replace with your actual data fetching function
+Future<List<Post>> fetchUserPosts() async {
+  // Simulating data fetching from a database
+  // Replace this with your actual database call
+  await Future.delayed(Duration(seconds: 2));
+  return [
+    Post(
+        postId: 0,
+        imageUrl: 'assets/images/post1.jpeg',
+        caption: 'Beautiful Handicraft bags'),
+    Post(
+        postId: 1,
+        imageUrl: 'assets/images/post1.jpeg',
+        caption: 'Amazing artwork'),
+    // Add more posts as needed
+  ];
+}
+
+class UserPosts extends StatelessWidget {
+  final List<Post> posts;
+
+  UserPosts({required this.posts});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 20),
+        Text(
+          'Your Posts',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 10),
+        Container(
+          height: 200,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: posts.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Container(
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(posts[index].imageUrl),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(posts[index].caption),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key});
 
@@ -118,9 +194,26 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 30,
+                    SizedBox(height: 30),
+                    // User Posts
+                    FutureBuilder<List<Post>>(
+                      future: fetchUserPosts(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if (!snapshot.hasData) {
+                          return Text('No posts available');
+                        } else {
+                          return UserPosts(posts: snapshot.data!);
+                        }
+                      },
                     ),
+
+                    // Rest of the profile information and buttons
+                    SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
@@ -209,9 +302,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    // ... (other profile information)
+                    SizedBox(height: 20),
                     Center(
                       child: SizedBox(
                         width: 150,
@@ -225,9 +317,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           onPressed: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => UpdatePage()));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UpdatePage(),
+                              ),
+                            );
                           },
                           child: Text(
                             "Update",
@@ -239,6 +333,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                     ),
+
                     SizedBox(
                       height: 20,
                     ),
