@@ -124,231 +124,236 @@ class _ProfilePageState extends State<ProfilePage> {
                 final followersCount = snapshot.data!['followers'];
                 final followingCount = snapshot.data!['following'];
 
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                return Stack(
                   children: [
-                    // Circular profile picture
-                    Container(
-                      margin: EdgeInsets.only(top: 20, left: 150),
-                      child: CircleAvatar(
-                        radius: 50,
-                        backgroundImage: AssetImage('assets/images/dp.jpg'),
-                      ),
-                    ),
-                    // User name
-                    Container(
-                      margin: EdgeInsets.only(top: 10, left: 150),
-                      child: Text(
-                        'User Name', // Replace with the actual user name
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Circular profile picture
+                        Container(
+                          margin: EdgeInsets.only(top: 20),
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundImage: AssetImage('assets/images/dp.jpg'),
+                          ),
                         ),
-                      ),
-                    ),
-                    // Following and followers count
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              // Navigate to the Following page
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => FollowingPage(),
+                        // User name
+                        Container(
+                          margin: EdgeInsets.only(top: 10),
+                          child: Text(
+                            'User Name', // Replace with the actual user name
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        // Following and followers count
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // Navigate to the Following page
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FollowingPage(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  'Following: $followingCount',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.blueGrey,
+                                    decoration: TextDecoration.underline,
+                                  ),
                                 ),
-                              );
-                            },
+                              ),
+                              SizedBox(width: 16),
+                              InkWell(
+                                onTap: () {
+                                  // Navigate to the Followers page
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FollowerPage(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  'Followers: $followersCount',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.blueGrey,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 30),
+
+                        // Rest of the profile information and buttons
+                        SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
                             child: Text(
-                              'Following: $followingCount',
+                              'Name: ',
                               style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.blueGrey,
-                                decoration: TextDecoration.underline,
+                                fontSize: 18,
+                                fontFamily: 'Mplus1p',
                               ),
                             ),
                           ),
-                          SizedBox(width: 16),
-                          InkWell(
-                            onTap: () {
-                              // Navigate to the Followers page
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => FollowerPage(),
-                                ),
-                              );
-                            },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
                             child: Text(
-                              'Followers: $followersCount',
+                              'City: ',
                               style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.blueGrey,
-                                decoration: TextDecoration.underline,
+                                fontSize: 18,
+                                fontFamily: 'Mplus1p',
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 30),
-                    // User Posts
-                    FutureBuilder<List<Post>>(
-                      future: fetchUserPosts(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return CircularProgressIndicator();
-                        } else if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        } else if (!snapshot.hasData) {
-                          return Text('No posts available');
-                        } else {
-                          return UserPosts(posts: snapshot.data!);
-                        }
-                      },
-                    ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            child: Text(
+                              'State: ',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Mplus1p',
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            child: Text(
+                              'Country: ',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Mplus1p',
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
 
-                    // Rest of the profile information and buttons
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        child: Text(
-                          'Name: ',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Mplus1p',
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            child: Text(
+                              'Services: ',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Mplus1p',
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        child: Text(
-                          'City: ',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Mplus1p',
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            child: Text(
+                              'Social media Accounts: ',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Mplus1p',
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        child: Text(
-                          'State: ',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Mplus1p',
+                        // ... (other profile information)
+                        SizedBox(height: 20),
+                        Center(
+                          child: SizedBox(
+                            width: 150,
+                            height: 45,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Color(0xFF0245A3),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UpdatePage(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                "Update",
+                                style: TextStyle(
+                                  fontFamily: 'Mplus1p',
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        child: Text(
-                          'Country: ',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Mplus1p',
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
 
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        child: Text(
-                          'Services: ',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Mplus1p',
-                          ),
+                        SizedBox(
+                          height: 20,
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Container(
-                        child: Text(
-                          'Social media Accounts: ',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Mplus1p',
-                          ),
+                        // User Posts
+                        FutureBuilder<List<Post>>(
+                          future: fetchUserPosts(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              return Text('Error: ${snapshot.error}');
+                            } else if (!snapshot.hasData) {
+                              return Text('No posts available');
+                            } else {
+                              return UserPosts(posts: snapshot.data!);
+                            }
+                          },
                         ),
-                      ),
+                      ],
                     ),
-                    // ... (other profile information)
-                    SizedBox(height: 20),
-                    Center(
-                      child: SizedBox(
-                        width: 150,
-                        height: 45,
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: Color(0xFF0245A3),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => UpdatePage(),
-                              ),
-                            );
+                            // Log out logic
+                            // You can add your log out functionality here
                           },
-                          child: Text(
-                            "Update",
-                            style: TextStyle(
-                              fontFamily: 'Mplus1p',
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Center(
-                      child: SizedBox(
-                        width: 150,
-                        height: 45,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xFF0245A3),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () {},
                           child: Text(
                             "Log Out",
                             style: TextStyle(
