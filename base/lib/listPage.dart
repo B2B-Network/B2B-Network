@@ -1,20 +1,37 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
+import 'package:file_picker/file_picker.dart';
 
 import 'homePage.dart';
 import 'notification.dart';
 import 'searchPage.dart';
 
 class ListPage extends StatefulWidget {
-  const ListPage({super.key});
+  const ListPage({Key? key});
 
   @override
   State<ListPage> createState() => _ListPageState();
 }
 
 class _ListPageState extends State<ListPage> {
+  Future<void> _pickFile() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+      if (result != null) {
+        File file = File(result.files.single.path!);
+
+        // Handle the selected file as needed, e.g., display or upload it
+        // _handleFileUpload(file);
+      } else {
+        print('No file selected.');
+      }
+    } catch (e) {
+      print('Error picking file: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,14 +73,8 @@ class _ListPageState extends State<ListPage> {
                     color: Color.fromARGB(255, 171, 171, 173),
                   ),
                   child: FloatingActionButton(
-                    onPressed: () {
-                      // Handle the onPressed event for posting a picture
-                      // Replace the commented code below with your actual logic for posting a picture.
-                      // _handlePicturePosting();
-                    },
-                    child: Icon(
-                      Icons.add_a_photo,
-                    ),
+                    onPressed: _pickFile,
+                    child: Icon(Icons.add_a_photo),
                     backgroundColor: Colors.transparent,
                   ),
                 ),
@@ -176,9 +187,4 @@ class _ListPageState extends State<ListPage> {
       ),
     );
   }
-
-  // Replace this method with your actual logic for posting a picture
-  // void _handlePicturePosting() {
-  //   // Implement your logic here
-  // }
 }
