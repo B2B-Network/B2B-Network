@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'listPage.dart';
 import 'notification.dart';
 import 'searchPage.dart';
+import 'userProfilePage.dart'; // Update this import statement
 
 class FollowerPage extends StatefulWidget {
   const FollowerPage({Key? key}) : super(key: key);
@@ -34,13 +35,16 @@ class _FollowerPageState extends State<FollowerPage> {
             ),
             title: Text(followersList[index]['name']),
             onTap: () {
-              // Add logic for tapping on a follower, e.g., navigate to the follower's profile
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => FollowerProfilePage(),
-              //   ),
-              // );
+              // Navigate to the follower's profile page and pass the follower data
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserProfilePage(
+                    userName: followersList[index]['name'],
+                    profileImage: followersList[index]['profileImage'],
+                  ),
+                ),
+              );
             },
           );
         },
