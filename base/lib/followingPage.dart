@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'listPage.dart';
 import 'notification.dart';
 import 'searchPage.dart';
+import 'userProfilePage.dart'; // Update this import statement
+
 
 class FollowingPage extends StatefulWidget {
   const FollowingPage({Key? key}) : super(key: key);
@@ -12,7 +14,6 @@ class FollowingPage extends StatefulWidget {
 }
 
 class _FollowingPageState extends State<FollowingPage> {
-  // Replace this with the actual list of users you are following from your database
   List<Map<String, dynamic>> followingList = [
     {'name': 'User 1', 'profileImage': 'assets/profile_image1.jpg'},
     {'name': 'User 2', 'profileImage': 'assets/profile_image2.jpg'},
@@ -30,20 +31,20 @@ class _FollowingPageState extends State<FollowingPage> {
         itemBuilder: (context, index) {
           return ListTile(
             leading: CircleAvatar(
-              // Replace with the profile picture of the person you are following
               backgroundImage: AssetImage(followingList[index]['profileImage']),
             ),
-            title: Text(followingList[index]
-                ['name']), // Display the name of the person you are following
-
+            title: Text(followingList[index]['name']),
             onTap: () {
-              // Add logic for tapping on a person you are following, e.g., navigate to their profile
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => FollowingProfilePage(),
-              //   ),
-              // );
+              // Navigate to the user's profile page and pass the user data
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserProfilePage(
+                    userName: followingList[index]['name'],
+                    profileImage: followingList[index]['profileImage'],
+                  ),
+                ),
+              );
             },
           );
         },
