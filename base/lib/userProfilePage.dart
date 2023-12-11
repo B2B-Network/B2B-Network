@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'followingNFollowerPage.dart';
 import 'listPage.dart';
 import 'notification.dart';
 import 'searchPage.dart';
@@ -145,6 +146,16 @@ class UserProfilePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               InkWell(
+                                onTap: () {
+                                  // Navigate to the Following page
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          FollowingNFollowerPage(),
+                                    ),
+                                  );
+                                },
                                 child: Text(
                                   'Following: $followingCount',
                                   style: TextStyle(
@@ -156,8 +167,18 @@ class UserProfilePage extends StatelessWidget {
                               ),
                               SizedBox(width: 16),
                               InkWell(
+                                onTap: () {
+                                  // Navigate to the Following page
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          FollowingNFollowerPage(),
+                                    ),
+                                  );
+                                },
                                 child: Text(
-                                  'Followers: $followersCount',
+                                  'Following: $followingCount',
                                   style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.blueGrey,

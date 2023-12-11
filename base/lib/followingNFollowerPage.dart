@@ -5,43 +5,42 @@ import 'notification.dart';
 import 'searchPage.dart';
 import 'userProfilePage.dart'; // Update this import statement
 
-class FollowerPage extends StatefulWidget {
-  const FollowerPage({Key? key}) : super(key: key);
+
+class FollowingNFollowerPage extends StatefulWidget {
+  const FollowingNFollowerPage({super.key});
 
   @override
-  State<FollowerPage> createState() => _FollowerPageState();
+  State<FollowingNFollowerPage> createState() => _FollowingNFollowerPageState();
 }
 
-class _FollowerPageState extends State<FollowerPage> {
-  // Replace this with the actual list of followers from your database
-  List<Map<String, dynamic>> followersList = [
-    {'name': 'Follower 1', 'profileImage': 'assets/profile_image1.jpg'},
-    {'name': 'Follower 2', 'profileImage': 'assets/profile_image2.jpg'},
-    // Add more followers as needed
+class _FollowingNFollowerPageState extends State<FollowingNFollowerPage> {
+  List<Map<String, dynamic>> followingList = [
+    {'name': 'User 1', 'profileImage': 'assets/profile_image1.jpg'},
+    {'name': 'User 2', 'profileImage': 'assets/profile_image2.jpg'},
+    // Add more users as needed
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Followers'),
+        title: Text('Following'),
       ),
       body: ListView.builder(
-        itemCount: followersList.length,
+        itemCount: followingList.length,
         itemBuilder: (context, index) {
           return ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage(followersList[index]['profileImage']),
+              backgroundImage: AssetImage(followingList[index]['profileImage']),
             ),
-            title: Text(followersList[index]['name']),
+            title: Text(followingList[index]['name']),
             onTap: () {
-              // Navigate to the follower's profile page and pass the follower data
+              // Navigate to the user's profile page and pass the user data
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => UserProfilePage(
-                    userName: followersList[index]['name'],
-                    profileImage: followersList[index]['profileImage'],
+                    userName: followingList[index]['name'],
+                    profileImage: followingList[index]['profileImage'],
                   ),
                 ),
               );
@@ -101,6 +100,7 @@ class _FollowerPageState extends State<FollowerPage> {
           }
         },
       ),
-    );
+    );;
   }
 }
+

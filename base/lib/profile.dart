@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'followerPage.dart';
-import 'followingPage.dart';
+import 'followingNFollowerPage.dart';
 import 'homePage.dart';
 import 'listPage.dart';
 import 'notification.dart';
@@ -160,7 +159,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => FollowingPage(),
+                                      builder: (context) =>
+                                          FollowingNFollowerPage(),
                                     ),
                                   );
                                 },
@@ -180,7 +180,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => FollowerPage(),
+                                      builder: (context) =>
+                                          FollowingNFollowerPage(),
                                     ),
                                   );
                                 },
