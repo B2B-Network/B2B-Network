@@ -48,9 +48,12 @@ class UserPosts extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 20),
-        Text(
-          'Your Posts',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20),
+          child: Text(
+            'Your Posts',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
         SizedBox(height: 10),
         Container(
