@@ -130,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         // Circular profile picture
                         Container(
-                          margin: EdgeInsets.only(top: 20),
+                          margin: EdgeInsets.only(top: 20, left: 20),
                           child: CircleAvatar(
                             radius: 50,
                             backgroundImage: AssetImage('assets/images/dp.jpg'),
@@ -138,7 +138,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         // User name
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(top: 10, left: 20),
                           child: Text(
                             'User Name', // Replace with the actual user name
                             style: TextStyle(
@@ -149,7 +149,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         // Following and followers count
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 8),
+                          margin:    EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -200,9 +200,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         SizedBox(height: 30),
 
                         // Rest of the profile information and buttons
-                        SizedBox(height: 20),
+                        
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Name: ',
@@ -217,7 +217,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'City: ',
@@ -232,7 +232,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'State: ',
@@ -247,7 +247,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Country: ',
@@ -263,7 +263,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
 
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Services: ',
@@ -278,7 +278,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Social media Accounts: ',

@@ -375,6 +375,18 @@ class UserProfilePage extends StatelessWidget {
                         ),
                         // ... (other profile information)
                         SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, left: 20),
+                          child: Container(
+                            child: Text(
+                              'Social Media Accounts: ',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'Mplus1p',
+                              ),
+                            ),
+                          ),
+                        ),
 
                         // User Posts
                         FutureBuilder<List<Post>>(
