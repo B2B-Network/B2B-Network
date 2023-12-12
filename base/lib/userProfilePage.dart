@@ -122,7 +122,7 @@ class UserProfilePage extends StatelessWidget {
                       children: [
                         // Circular profile picture
                         Container(
-                          margin: EdgeInsets.only(top: 20),
+                          margin: EdgeInsets.only(top: 20, left: 20),
                           child: CircleAvatar(
                             radius: 50,
                             backgroundImage: AssetImage('assets/images/dp.jpg'),
@@ -130,7 +130,7 @@ class UserProfilePage extends StatelessWidget {
                         ),
                         // User name
                         Container(
-                          margin: EdgeInsets.only(top: 10),
+                          margin: EdgeInsets.only(top: 10, left: 20),
                           child: Text(
                             userName,
                             style: TextStyle(
@@ -141,7 +141,8 @@ class UserProfilePage extends StatelessWidget {
                         ),
                         // Following and followers count
                         Container(
-                          margin: EdgeInsets.symmetric(vertical: 8),
+                          margin:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -189,12 +190,58 @@ class UserProfilePage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 10),
+                        Container(
+                          margin:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Positioned(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Color(0xFF0245A3),
+                                  ),
+                                  onPressed: () {
+                                    // Log out logic
+                                    // You can add your log out functionality here
+                                  },
+                                  child: Text(
+                                    "Follow",
+                                    style: TextStyle(
+                                      fontFamily: 'Mplus1p',
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              Positioned(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Color(0xFF0245A3),
+                                  ),
+                                  onPressed: () {
+                                    // Log out logic
+                                    // You can add your log out functionality here
+                                  },
+                                  child: Text(
+                                    "Message",
+                                    style: TextStyle(
+                                      fontFamily: 'Mplus1p',
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
 
                         // Rest of the profile information and buttons
                         SizedBox(height: 20),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Name:',
@@ -209,7 +256,7 @@ class UserProfilePage extends StatelessWidget {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Bio:',
@@ -224,7 +271,7 @@ class UserProfilePage extends StatelessWidget {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Business Name: ',
@@ -239,7 +286,7 @@ class UserProfilePage extends StatelessWidget {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Email: ',
@@ -254,7 +301,7 @@ class UserProfilePage extends StatelessWidget {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'City: ',
@@ -269,7 +316,7 @@ class UserProfilePage extends StatelessWidget {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'State: ',
@@ -284,7 +331,7 @@ class UserProfilePage extends StatelessWidget {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Country:',
@@ -300,7 +347,7 @@ class UserProfilePage extends StatelessWidget {
                         ),
 
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Services: ',
@@ -315,7 +362,7 @@ class UserProfilePage extends StatelessWidget {
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
                             child: Text(
                               'Category: ',
