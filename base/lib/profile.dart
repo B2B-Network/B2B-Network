@@ -6,6 +6,7 @@ import 'listPage.dart';
 import 'notification.dart';
 import 'searchPage.dart';
 import 'update.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // Replace with your actual data fetching function
 Future<Map<String, int>> fetchFollowCounts() async {
@@ -152,7 +153,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         // Following and followers count
                         Container(
-                          margin:    EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                          margin:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -203,7 +205,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         SizedBox(height: 30),
 
                         // Rest of the profile information and buttons
-                        
+
                         Padding(
                           padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
@@ -283,12 +285,45 @@ class _ProfilePageState extends State<ProfilePage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 10, left: 20),
                           child: Container(
-                            child: Text(
-                              'Social media Accounts: ',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Mplus1p',
-                              ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Social Media Accounts: ',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: 'Mplus1p',
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                SocialMediaIcon(
+                                  iconAsset: 'assets/icons/linkedin.png',
+                                  onTap: () {
+                                    // Handle the link to the LinkedIn profile
+                                    _launchSocialMedia(
+                                        'https://www.linkedin.com/');
+                                  },
+                                ),
+                                SizedBox(width: 10),
+                                SocialMediaIcon(
+                                  iconAsset: 'assets/icons/twitter.png',
+                                  onTap: () {
+                                    // Handle the link to the Twitter profile
+                                    _launchSocialMedia('https://twitter.com/');
+                                  },
+                                ),
+                                SizedBox(width: 10),
+                                SocialMediaIcon(
+                                  iconAsset: 'assets/icons/instagram.png',
+                                  onTap: () {
+                                    // Handle the link to the Instagram profile
+                                    _launchSocialMedia(
+                                        'https://www.instagram.com/');
+                                  },
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -426,6 +461,33 @@ class _ProfilePageState extends State<ProfilePage> {
               break;
           }
         },
+      ),
+    );
+  }
+
+  void _launchSocialMedia(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+}
+
+class SocialMediaIcon extends StatelessWidget {
+  final String iconAsset;
+  final VoidCallback onTap;
+
+  SocialMediaIcon({required this.iconAsset, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Image.asset(
+        iconAsset,
+        width: 40,
+        height: 40,
       ),
     );
   }

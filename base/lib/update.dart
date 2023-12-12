@@ -80,6 +80,12 @@ class _UpdatePageState extends State<UpdatePage> {
         appBar: AppBar(
           backgroundColor: Color(0xFF0245A3),
           title: Text("Edit Profile"),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context); // This will navigate back
+            },
+          ),
         ),
         body: Align(
           alignment: Alignment.topLeft,
