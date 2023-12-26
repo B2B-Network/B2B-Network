@@ -5,7 +5,6 @@ import 'notification.dart';
 import 'searchPage.dart';
 import 'userProfilePage.dart'; // Update this import statement
 
-
 class FollowingNFollowerPage extends StatefulWidget {
   const FollowingNFollowerPage({super.key});
 
@@ -100,7 +99,7 @@ class _FollowingNFollowerPageState extends State<FollowingNFollowerPage> {
           }
         },
       ),
-    );;
+    );
+    ;
   }
 }
-

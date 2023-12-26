@@ -64,26 +64,65 @@ class UserPosts extends StatelessWidget {
         Container(
           height: 200,
           child: ListView.builder(
-            scrollDirection: Axis.horizontal,
+            scrollDirection: Axis.vertical,
             itemCount: posts.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
+                child: Stack(
                   children: [
-                    Container(
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(posts[index].imageUrl),
-                          fit: BoxFit.cover,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 350,
+                          height: 200,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(posts[index].imageUrl),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(8),
+                        Positioned(
+                          bottom: 8,
+                          left: 8,
+                          child: Text(posts[index].caption),
+                        ),
+                      ],
+                    ),
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: PopupMenuButton(
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            child: Row(
+                              children: [
+                                Icon(Icons.offline_bolt, color: Colors.black),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text('Edit'),
+                                ),
+                              ],
+                            ),
+                          ),
+                          PopupMenuItem(
+                            child: Row(
+                              children: [
+                                Icon(Icons.delete, color: Colors.red),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text('Delete'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                        child: Icon(Icons.more_vert, size: 28),
                       ),
                     ),
-                    SizedBox(height: 8),
-                    Text(posts[index].caption),
                   ],
                 ),
               );

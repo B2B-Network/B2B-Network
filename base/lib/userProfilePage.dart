@@ -52,7 +52,7 @@ class UserPosts extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20),
           child: Text(
-            'Your Posts',
+            ' Posts',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
@@ -60,16 +60,17 @@ class UserPosts extends StatelessWidget {
         Container(
           height: 200,
           child: ListView.builder(
-            scrollDirection: Axis.horizontal,
+            scrollDirection: Axis.vertical,
             itemCount: posts.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width: 150,
-                      height: 150,
+                      width: 350,
+                      height: 200,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage(posts[index].imageUrl),
